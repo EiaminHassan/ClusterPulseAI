@@ -25,6 +25,11 @@ Telemetry is synthetically generated (with a schema matching Prometheus/DCGM
 exporters) so the whole pipeline runs end-to-end with zero external
 dependencies — no real cluster required for the demo.
 
+## **PPTX Slide**
+
+**Presentation deck (PPTX):**
+https://drive.google.com/file/d/18Hdl3mj5aLHOBcrPwFHet-qgucvSTR3x/view?usp=sharing
+
 ## Project structure
 
 ```
@@ -117,6 +122,16 @@ one-sentence, rule-based plain-language reason — no LLM required. The
 synthetic generator includes one guaranteed "conflict demo" node per run
 (idle on utilization the whole window, but developing a thermal/power fault
 over time) so there's always at least one real conflict to show in a demo.
+
+## Design Choices
+
+- **Modular Architecture:** Preserved the existing Health and Cost modules by introducing a separate **Action Ranking & Conflict Resolver** layer for clean integration and scalability.
+- **Isolation Forest:** Used for unsupervised failure-risk detection based on thermal and power anomalies, as labeled failure data is typically unavailable.
+- **Rule-Based Idle Detection:** Implemented a simple threshold-based approach for transparent and explainable idle resource detection.
+- **Safety-First Conflict Resolution:** Prioritizes health recommendations over cost optimization when the risk score exceeds a configurable threshold.
+- **Value-Based Ranking:** Combines failure risk and estimated cost savings into a configurable **Value Score** to prioritize operator actions.
+- **Explainable Recommendations:** Generates plain-language reasons for every recommended action to improve usability and decision-making.
+- **Synthetic Telemetry:** Uses simulated GPU cluster telemetry that closely resembles real Prometheus/DCGM metrics, enabling future integration with live data.
 
 
 ## Tech stack
