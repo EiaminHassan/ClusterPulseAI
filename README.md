@@ -118,13 +118,6 @@ synthetic generator includes one guaranteed "conflict demo" node per run
 (idle on utilization the whole window, but developing a thermal/power fault
 over time) so there's always at least one real conflict to show in a demo.
 
-## Roadmap (beyond hackathon scope)
-
-- Natural-language assistant for ad-hoc questions ("Why is node-3 unhealthy?")
-- Live ingestion from Prometheus / NVIDIA DCGM exporters (schema is already
-  designed to match)
-- Multi-cluster support and periodic model retraining on live data
-- Closed-loop actions (autoscaling APIs) instead of advisory-only alerts
 
 ## Tech stack
 
